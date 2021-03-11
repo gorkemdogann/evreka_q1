@@ -1,0 +1,48 @@
+{% extends 'layout1.html' %} {% block body %}
+
+<h3>Transfer Paneli</h3>
+<hr>
+<p>
+    Hoşgeldiniz, <small>{{request.user.username}}</small>
+</p>
+<hr>
+<a class="btn btn-success " href="/evraka/addexpedition">Sefer Ekle</a>
+<hr> {% if evraka %}
+
+<table class="table">
+    <thead class="thead-dark">
+        <tr>
+            <th scope="col">User</th>
+            <th scope="col">Date</th>
+            <th scope="col">Vehicle</th>
+            <th scope="col">Latitude</th>
+            <th scope="col">Longitude</th>
+            <th scope="col">Plate</th>
+            <th scope="col"></th>
+            <th scope="col"></th>
+            <th scope="col"></th>
+        </tr>
+    </thead>
+    <tbody>
+
+        {% for evraka in evraka %}
+        <tr>
+            <td>{{evraka.user}}</td>
+            <td>{{evraka.date}}</td>
+            <td>{{evraka.vehicle}}</td>
+            <td>{{evraka.latitude}}</td>
+            <td>{{evraka.longitude}}</td>
+            <td>{{evraka.plate}}</td>
+            <td><a href="/evraka/update/{{evraka.id}}" class="btn btn-success">Güncelle</a></td>
+            <td><a href="/evraka/delete/{{evraka.id}}" class="btn btn-danger">Sil</a></td>
+        </tr>
+
+        {% endfor %}
+    </tbody>
+</table>
+
+{% else %}
+<div class="alert alert-danger">
+    Henüz Bir Transferiniz Bulunmuyor...
+</div>
+{% endif %} {% endblock body %}
